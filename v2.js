@@ -129,6 +129,34 @@ document.addEventListener('DOMContentLoaded', () => {
         // Создаем матрицу плотности для всего экрана
         let densityMap = Array(gridRows).fill().map(() => Array(gridCols).fill(0));
         
+        // Получаем координаты toggle-контейнера
+        const toggleContainer = document.querySelector('.toggle-container');
+        const toggleRect = toggleContainer.getBoundingClientRect();
+        
+        // Добавляем безопасную зону вокруг toggle-контейнера (20px с каждой стороны)
+        const safeZoneLeft = Math.max(0, toggleRect.left - 20);
+        const safeZoneRight = Math.min(viewportWidth, toggleRect.right + 20);
+        const safeZoneTop = Math.max(0, toggleRect.top - 20);
+        const safeZoneBottom = Math.min(safeZoneHeight, toggleRect.bottom + 20);
+        
+        // Помечаем все ячейки, которые пересекаются с безопасной зоной вокруг toggle-контейнера
+        for (let row = 0; row < gridRows; row++) {
+            for (let col = 0; col < gridCols; col++) {
+                // Вычисляем границы этой ячейки
+                const cellLeft = col * cellWidth;
+                const cellRight = (col + 1) * cellWidth;
+                const cellTop = row * cellHeight;
+                const cellBottom = (row + 1) * cellHeight;
+                
+                // Проверяем пересечение ячейки с безопасной зоной toggle-контейнера
+                if (cellRight >= safeZoneLeft && cellLeft <= safeZoneRight &&
+                    cellBottom >= safeZoneTop && cellTop <= safeZoneBottom) {
+                    // Эта ячейка пересекается с безопасной зоной, помечаем ее как запрещенную
+                    densityMap[row][col] = 9999;
+                }
+            }
+        }
+        
         // Подсчитываем плотность уведомлений в каждой ячейке с учетом соседних ячеек
         notifications.forEach(notif => {
             const rect = notif.getBoundingClientRect();

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Notifications Screen (V4)</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <style>
+        /* Переопределяем стили toggle-container для нашей версии */
+        .toggle-container {
+            position: absolute;
+            top: 130px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            margin-bottom: 0; /* Сбрасываем margin из базовых стилей */
+            transition: transform 0.3s ease; /* Плавный переход для transform */
+        }
+        /* Комбинируем центрирование и масштабирование при наведении */
+        .toggle-container:hover {
+            transform: translateX(-50%) scale(1.05); /* Сохраняем центрирование и добавляем масштабирование */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="toggle-container">
+            <label class="switch">
+                <input type="checkbox" id="notificationToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div id="notificationsContainer"></div>
+        <div class="version-links">
+            <a href="index.html" class="version-link">V1</a>
+            <a href="v2.html" class="version-link">V2</a>
+            <a href="v3.html" class="version-link">V3</a>
+            <a href="v4.html" class="version-link active">V4</a>
+        </div>
+    </div>
+    <script src="v4.js"></script>
+</body>
+</html> 

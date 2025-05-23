@@ -104,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const NOTIFICATION_WIDTH = 380; // Ширина уведомления (px)
     const NOTIFICATION_GAP = 4; // Отступ между уведомлениями (px)
     const BOTTOM_MARGIN = 20; // Отступ от нижнего края экрана (px)
-    const TOGGLE_TOP = 130; // Позиция переключателя от верха (px)
     const TOGGLE_MARGIN = 0; // Отступ, который нужно оставить до переключателя (0px - точно до границы)
     const MAX_VISIBLE_NOTIFICATIONS = 10; // Максимальное количество видимых уведомлений
 
@@ -229,12 +228,15 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
     
+    // Сохраняем начальную позицию toggle при загрузке страницы
+    const initialTogglePosition = getTogglePosition();
+
     // Обновление позиций всего стека уведомлений
     function updateNotificationStack() {
         const viewportHeight = getViewportHeight();
         
-        // Получаем актуальную позицию toggle (всегда используем реальную позицию, не хардкодим)
-        const togglePos = getTogglePosition();
+        // Используем сохраненную позицию toggle вместо получения текущей
+        const togglePos = initialTogglePosition;
         
         // Копируем и переворачиваем массив, чтобы обрабатывать с нижнего (последнего) к верхнему
         const notificationsReversed = [...notifications].reverse();

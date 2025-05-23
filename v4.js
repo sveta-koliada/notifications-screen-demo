@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateNotificationStack() {
         const viewportHeight = getViewportHeight();
         
-        // Получаем актуальную позицию toggle
+        // Получаем актуальную позицию toggle (всегда используем реальную позицию, не хардкодим)
         const togglePos = getTogglePosition();
         
         // Копируем и переворачиваем массив, чтобы обрабатывать с нижнего (последнего) к верхнему

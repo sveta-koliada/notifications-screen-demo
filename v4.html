@@ -7,25 +7,50 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <style>
-        /* Переопределяем стили toggle-container для нашей версии */
-        .toggle-container {
-            position: absolute;
-            top: 130px;
-            left: 50%;
-            /* Используем translate3d для лучшей производительности и более точного рендеринга */
-            transform: translate3d(-50%, 0, 0);
-            z-index: 999;
-            margin-bottom: 0; /* Сбрасываем margin из базовых стилей */
-            /* Меняем transition для плавного изменения всех свойств */
-            transition: all 0.3s ease;
-            /* Добавляем transform-origin в центр для более точного масштабирования */
-            transform-origin: center center;
+        /* Используем flex-layout для вертикального расположения элементов */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            justify-content: flex-start; /* Выравнивание по верхнему краю */
+            height: 100dvh; /* Полная высота экрана */
         }
         
-        /* Изменяем подход к ховеру, используя масштабирование через scale3d */
+        /* Переопределяем стили toggle-container */
+        .toggle-container {
+            position: static; /* Вместо absolute */
+            margin-top: 130px; /* Отступ от верха */
+            margin-bottom: auto; /* Чтобы все остальное контента было ниже */
+            z-index: 999;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Простой эффект hover с масштабированием */
         .toggle-container:hover {
-            /* Вместо переопределения всего transform, используем отдельное свойство для масштабирования */
-            transform: translate3d(-50%, 0, 0) scale3d(1.05, 1.05, 1);
+            transform: scale(1.05);
+        }
+        
+        /* Контейнер для уведомлений */
+        #notificationsContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100dvh - 20px);
+            max-height: calc(100dvh - 20px);
+            pointer-events: none;
+            overflow: visible;
+        }
+        
+        /* Версии внизу экрана */
+        .version-links {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
     </style>
 </head>

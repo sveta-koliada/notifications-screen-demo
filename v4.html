@@ -12,14 +12,20 @@
             position: absolute;
             top: 130px;
             left: 50%;
-            transform: translateX(-50%);
+            /* Используем translate3d для лучшей производительности и более точного рендеринга */
+            transform: translate3d(-50%, 0, 0);
             z-index: 999;
             margin-bottom: 0; /* Сбрасываем margin из базовых стилей */
-            transition: transform 0.3s ease; /* Плавный переход для transform */
+            /* Меняем transition для плавного изменения всех свойств */
+            transition: all 0.3s ease;
+            /* Добавляем transform-origin в центр для более точного масштабирования */
+            transform-origin: center center;
         }
-        /* Комбинируем центрирование и масштабирование при наведении */
+        
+        /* Изменяем подход к ховеру, используя масштабирование через scale3d */
         .toggle-container:hover {
-            transform: translateX(-50%) scale(1.05); /* Сохраняем центрирование и добавляем масштабирование */
+            /* Вместо переопределения всего transform, используем отдельное свойство для масштабирования */
+            transform: translate3d(-50%, 0, 0) scale3d(1.05, 1.05, 1);
         }
     </style>
 </head>

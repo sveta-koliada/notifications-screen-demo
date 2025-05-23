@@ -43,14 +43,12 @@
             overflow: visible;
         }
         
-        /* Версии внизу экрана */
+        /* Возвращаем стандартные стили для навигации, как в других версиях */
         .version-links {
-            margin-top: auto; /* Отталкивает блок вниз */
-            margin-bottom: 10px; /* Отступ от низа экрана */
-            position: relative; /* Вместо absolute */
-            width: 100%;
-            display: flex;
-            justify-content: center;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 50;
         }
     </style>
 </head>
